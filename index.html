@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CARNAGE | The Symbiote</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Vazirmatn:wght@400;700;900&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050505;
+    color:white;
+    font-family:Vazirmatn,sans-serif;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:
+      radial-gradient(circle at 20% 20%,#65000055,transparent 30%),
+      radial-gradient(circle at 80% 70%,#ff000022,transparent 35%),
+      #050505;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    opacity:.15;
+    background-image:
+      linear-gradient(#ff000015 1px,transparent 1px),
+      linear-gradient(90deg,#ff000015 1px,transparent 1px);
+    background-size:50px 50px;
+}
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#050505cc;
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #ff000033;
+}
+
+.logo{
+    font-family:Orbitron;
+    font-size:25px;
+    font-weight:900;
+    color:#ff1717;
+    text-shadow:0 0 20px #ff0000;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ff2020;
+    text-shadow:0 0 15px red;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px 50px;
+    position:relative;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.badge{
+    display:inline-block;
+    border:1px solid #ff2020;
+    padding:8px 18px;
+    border-radius:30px;
+    color:#ff3333;
+    box-shadow:0 0 20px #ff000033;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-family:Orbitron;
+    font-size:clamp(60px,12vw,150px);
+    color:#fff;
+    line-height:.9;
+    text-shadow:
+      0 0 10px #ff0000,
+      0 0 40px #ff000088,
+      0 0 80px #ff000044;
+}
+
+.hero h1 span{
+    color:#e00000;
+}
+
+.hero p{
+    margin:30px auto;
+    max-width:650px;
+    color:#bbb;
+    font-size:18px;
+    line-height:2;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 30px;
+    margin:8px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-red{
+    background:#d90000;
+    color:white;
+    box-shadow:0 0 25px #ff000066;
+}
+
+.btn-red:hover{
+    transform:translateY(-5px) scale(1.04);
+    box-shadow:0 0 40px #ff0000aa;
+}
+
+.btn-dark{
+    border:1px solid #444;
+    color:white;
+}
+
+.btn-dark:hover{
+    border-color:#ff0000;
+    color:#ff3333;
+}
+
+/* SECTIONS */
+section{
+    padding:100px 7%;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.title h2{
+    font-family:Orbitron;
+    font-size:42px;
+}
+
+.title span{
+    color:#e00000;
+}
+
+.title p{
+    color:#888;
+    margin-top:12px;
+}
+
+/* ABOUT */
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.about-box{
+    background:linear-gradient(145deg,#111,#080808);
+    border:1px solid #ff000033;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 0 40px #000;
+}
+
+.about-box h3{
+    color:#ff2222;
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.about-box p{
+    color:#bbb;
+    line-height:2.2;
+}
+
+.carnage-symbol{
+    height:400px;
+    border-radius:25px;
+    background:
+      radial-gradient(circle,#ff000055,transparent 35%),
+      linear-gradient(135deg,#210000,#080808);
+    border:1px solid #ff000055;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Orbitron;
+    font-size:70px;
+    color:#ff0000;
+    text-shadow:0 0 40px red;
+    animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{box-shadow:0 0 20px #ff000022}
+    50%{box-shadow:0 0 70px #ff000055}
+}
+
+/* POWERS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:#0d0d0d;
+    border:1px solid #252525;
+    border-radius:18px;
+    padding:30px 20px;
+    text-align:center;
+    transition:.35s;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:#e00000;
+    transform:scaleX(0);
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-12px);
+    border-color:#ff000055;
+    box-shadow:0 20px 50px #000;
+}
+
+.card:hover::before{
+    transform:scaleX(1);
+}
+
+.icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#ff2222;
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#888;
+    line-height:1.8;
+}
+
+/* TIMELINE */
+.timeline{
+    max-width:850px;
+    margin:auto;
+    border-right:2px solid #8b0000;
+    padding-right:30px;
+}
+
+.event{
+    background:#0d0d0d;
+    margin-bottom:25px;
+    padding:25px;
+    border-radius:15px;
+    border:1px solid #222;
+    transition:.3s;
+}
+
+.event:hover{
+    border-color:#ff0000;
+    transform:translateX(-8px);
+}
+
+.event h3{
+    color:#ff3333;
+    margin-bottom:8px;
+}
+
+/* QUOTE */
+.quote{
+    text-align:center;
+    padding:100px 20px;
+    background:
+      radial-gradient(circle,#61000055,transparent 50%);
+}
+
+.quote h2{
+    font-family:Orbitron;
+    font-size:clamp(30px,5vw,60px);
+    text-shadow:0 0 25px red;
+}
+
+.quote p{
+    margin-top:20px;
+    color:#888;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    border-top:1px solid #222;
+    color:#666;
+}
+
+footer span{
+    color:#e00000;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about{
+        grid-template-columns:1fr;
+    }
+
+    nav .links{
+        display:none;
+    }
+}
+
+@media(max-width:600px){
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:70px 5%;
+    }
+
+    .hero h1{
+        font-size:65px;
+    }
+
+    .carnage-symbol{
+        height:280px;
+        font-size:45px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">CARNAGE</div>
+
+    <div class="links">
+        <a href="#home">خانه</a>
+        <a href="#about">معرفی</a>
+        <a href="#powers">قدرت‌ها</a>
+        <a href="#story">داستان</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+
+        <div class="badge">THE SYMBIOTE UNLEASHED</div>
+
+        <h1>CAR<span>NAGE</span></h1>
+
+        <p>
+            وارد دنیای تاریک و هیجان‌انگیز یکی از شناخته‌شده‌ترین
+            سیمبیوت‌های مارول شو.
+        </p>
+
+        <a class="btn btn-red" href="#about">شروع کاوش</a>
+        <a class="btn btn-dark" href="#powers">قدرت‌ها</a>
+
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+
+    <div class="title">
+        <h2>درباره <span>CARNAGE</span></h2>
+        <p>یک سیمبیوت متفاوت در دنیای مارول</p>
+    </div>
+
+    <div class="about">
+
+        <div class="carnage-symbol">
+            C
+        </div>
+
+        <div class="about-box">
+
+            <h3>چه کسی است؟</h3>
+
+            <p>
+                Carnage یکی از شخصیت‌های شناخته‌شده دنیای مارول است
+                که با سیمبیوت قرمز رنگ خود شناخته می‌شود.
+                او در داستان‌های مختلف کمیک با شخصیت‌هایی مانند
+                Spider-Man و Venom ارتباط پیدا کرده است.
+            </p>
+
+            <br>
+
+            <p>
+                ظاهر قرمز، قدرت‌های سیمبیوتی و طراحی خاص او باعث شده
+                Carnage به یکی از شخصیت‌های بسیار قابل‌تشخیص دنیای
+                مارول تبدیل شود.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- POWERS -->
+<section id="powers">
+
+    <div class="title">
+        <h2>قدرت‌های <span>CARNAGE</span></h2>
+        <p>توانایی‌های شناخته‌شده سیمبیوت</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">⚡</div>
+            <h3>قدرت بالا</h3>
+            <p>
+                سیمبیوت می‌تواند توانایی‌های فیزیکی میزبان خود را افزایش دهد.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🕸️</div>
+            <h3>توانایی سیمبیوتی</h3>
+            <p>
+                شکل و ساختار بدن سیمبیوت می‌تواند به شکل‌های مختلف تغییر کند.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔥</div>
+            <h3>تحرک بالا</h3>
+            <p>
+                Carnage در داستان‌های مارول از تحرک و انعطاف‌پذیری بالایی برخوردار است.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🧬</div>
+            <h3>اتصال سیمبیوتی</h3>
+            <p>
+                سیمبیوت با میزبان خود ارتباطی ویژه ایجاد می‌کند.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+
+    <div class="title">
+        <h2>دنیای <span>CARNAGE</span></h2>
+        <p>چند نقطه مهم از حضور او در داستان‌های مارول</p>
+    </div>
+
+    <div class="timeline">
+
+        <div class="event">
+            <h3>01 — ظهور</h3>
+            <p>
+                Carnage در داستان‌های کمیک مارول به عنوان یک سیمبیوت
+                بسیار متفاوت معرفی شد.
+            </p>
+        </div>
+
+        <div class="event">
+            <h3>02 — ارتباط با Venom</h3>
+            <p>
+                داستان Carnage ارتباط مهمی با دنیای Venom و سیمبیوت‌ها دارد.
+            </p>
+        </div>
+
+        <div class="event">
+            <h3>03 — Spider-Man</h3>
+            <p>
+                Carnage در داستان‌های مختلف با Spider-Man نیز روبه‌رو شده است.
+            </p>
+        </div>
+
+        <div class="event">
+            <h3>04 — دنیای سینما</h3>
+            <p>
+                این شخصیت در مجموعه فیلم‌های Venom نیز حضور پیدا کرده است.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- QUOTE -->
+<div class="quote">
+
+    <h2>WELCOME TO THE<br>SYMBIOTE WORLD</h2>
+
+    <p>
+        CARNAGE // MARVEL CHARACTER
+    </p>
+
+</div>
+
+<footer>
+    ساخته‌شده با ❤️ برای طرفداران <span>CARNAGE</span>
+</footer>
+
+</body>
+  </html>
